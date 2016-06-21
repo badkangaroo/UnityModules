@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using LeapInternal;
+using Leap.Unity.RealtimeGraph;
 
 namespace Leap.Unity.Interaction.CApi {
 
@@ -357,8 +358,10 @@ namespace Leap.Unity.Interaction.CApi {
                                                    ref INTERACTION_TRANSFORM transform,
                                                    ref INTERACTION_UPDATE_SHAPE_INFO updateInfo,
                                                    ref INTERACTION_SHAPE_INSTANCE_HANDLE instance) {
+      RealtimeGraph.RealtimeGraph.Instance.BeginSample("Update Shape", RealtimeGraph.RealtimeGraph.GraphUnits.Miliseconds);
       var rs = LeapIEUpdateShapeInstance(ref scene, ref transform, ref updateInfo, ref instance);
       Logger.HandleReturnStatus(scene, "Update Shape Instance", LogLevel.AllCalls, rs);
+      RealtimeGraph.RealtimeGraph.Instance.EndSample();
       return rs;
     }
 
@@ -371,8 +374,10 @@ namespace Leap.Unity.Interaction.CApi {
     public static ReturnStatus UpdateHands(ref INTERACTION_SCENE scene,
                                                UInt32 nHands,
                                                IntPtr pHands) {
+      RealtimeGraph.RealtimeGraph.Instance.BeginSample("Update Hands", RealtimeGraph.RealtimeGraph.GraphUnits.Miliseconds);
       var rs = LeapIEUpdateHands(ref scene, nHands, pHands);
       Logger.HandleReturnStatus(scene, "Update Hands", LogLevel.AllCalls, rs);
+      RealtimeGraph.RealtimeGraph.Instance.EndSample();
       return rs;
     }
 
@@ -383,8 +388,10 @@ namespace Leap.Unity.Interaction.CApi {
 
     public static ReturnStatus UpdateController(ref INTERACTION_SCENE scene,
                                                 ref INTERACTION_TRANSFORM controllerTransform) {
+      RealtimeGraph.RealtimeGraph.Instance.BeginSample("Update Controller", RealtimeGraph.RealtimeGraph.GraphUnits.Miliseconds);
       var rs = LeapIEUpdateController(ref scene, ref controllerTransform);
       Logger.HandleReturnStatus(scene, "Update Controller", LogLevel.AllCalls, rs);
+      RealtimeGraph.RealtimeGraph.Instance.EndSample();
       return rs;
     }
 
@@ -424,6 +431,7 @@ namespace Leap.Unity.Interaction.CApi {
 
     public static ReturnStatus GetShapeInstanceResults(ref INTERACTION_SCENE scene,
                                                            List<INTERACTION_SHAPE_INSTANCE_RESULTS> results) {
+      RealtimeGraph.RealtimeGraph.Instance.BeginSample("Get Results", RealtimeGraph.RealtimeGraph.GraphUnits.Miliseconds);
       UInt32 nResults;
       IntPtr papResultsBuffer;
       var rs = LeapIEGetShapeInstanceResults(ref scene,
@@ -442,6 +450,7 @@ namespace Leap.Unity.Interaction.CApi {
       }
 
       Logger.HandleReturnStatus(scene, "Get Velocities", LogLevel.AllCalls, rs);
+      RealtimeGraph.RealtimeGraph.Instance.EndSample();
       return rs;
     }
 

@@ -8,6 +8,16 @@ namespace Leap.Unity.RealtimeGraph {
 
   public class RealtimeGraph : MonoBehaviour {
 
+    private static RealtimeGraph _cachedInstance = null;
+    public static RealtimeGraph Instance {
+      get {
+        if (_cachedInstance == null) {
+          _cachedInstance = FindObjectOfType<RealtimeGraph>();
+        }
+        return _cachedInstance;
+      }
+    }
+
     public enum GraphUnits {
       Miliseconds,
       Framerate
