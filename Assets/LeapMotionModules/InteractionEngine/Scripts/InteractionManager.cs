@@ -2,11 +2,10 @@
 using UnityEngine.UI;
 using UnityEngine.Assertions;
 using System;
-using System.IO;
 using System.Collections.Generic;
 using Leap.Unity.Interaction.CApi;
 using System.Runtime.InteropServices;
-using Leap.Unity.RealtimeGraph;
+using Leap.Unity.Graphing;
 
 namespace Leap.Unity.Interaction {
 
@@ -568,7 +567,7 @@ namespace Leap.Unity.Interaction {
     }
 
     protected virtual void FixedUpdate() {
-      RealtimeGraph.RealtimeGraph.Instance.BeginSample("Interaction Manager", RealtimeGraph.RealtimeGraph.GraphUnits.Miliseconds);
+      RealtimeGraph.Instance.BeginSample("Interaction Manager", RealtimeGraph.GraphUnits.Miliseconds);
       if (OnPrePhysicalUpdate != null) {
         OnPrePhysicalUpdate();
       }
@@ -588,7 +587,7 @@ namespace Leap.Unity.Interaction {
       if (_showDebugOutput) {
         InteractionC.GetDebugStrings(ref _scene, _debugOutput);
       }
-      RealtimeGraph.RealtimeGraph.Instance.EndSample();
+      RealtimeGraph.Instance.EndSample();
     }
 
     protected virtual void LateUpdate() {
