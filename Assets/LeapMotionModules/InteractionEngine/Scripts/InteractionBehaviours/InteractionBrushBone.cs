@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using Leap.Unity.Interaction;
-using UnityEditor;
 
 namespace Leap.Unity.Interaction {
   public class InteractionBrushBone : MonoBehaviour {
