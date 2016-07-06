@@ -60,7 +60,7 @@ using System.Runtime.InteropServices;
                 restPosition.translation = new Vector(-80f, 120f, 0f);
                 restPosition.MirrorX();
             }
-            return testHand.TransformedCopy(restPosition);
+            return testHand.Transform(restPosition);
         }
 
          static LeapQuaternion AngleAxis(float angle, Vector axis){

@@ -50,7 +50,7 @@ namespace Leap.Unity {
 #if UNITY_EDITOR
     void Update() {
       if (!EditorApplication.isPlaying && SupportsEditorPersistence()) {
-        Hand hand = TestHandFactory.MakeTestHand(0, 0, Handedness == Chirality.Left).TransformedCopy(UnityMatrixExtension.GetLeapMatrix(transform));
+        Hand hand = TestHandFactory.MakeTestHand(0, 0, Handedness == Chirality.Left).Transform(UnityMatrixExtension.GetLeapMatrix(transform));
         if (GetLeapHand() == null) {
           SetLeapHand(hand);
           InitHand();
