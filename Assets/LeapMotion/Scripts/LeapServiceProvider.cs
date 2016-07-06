@@ -155,6 +155,8 @@ namespace Leap.Unity {
 
     protected virtual void Start() {
       createController();
+      _untransformedUpdateFrame = new Frame();
+      _untransformedFixedFrame = new Frame();
       _transformedUpdateFrame = new Frame();
       _transformedFixedFrame = new Frame();
       StartCoroutine(waitCoroutine());
@@ -185,7 +187,7 @@ namespace Leap.Unity {
         Int64 unityOffsetTime = unityTime - _interpolationDelay * 1000;
         Int64 leapFrameTime = clockCorrelator.ExternalClockToLeapTime(unityOffsetTime);
 
-        _untransformedUpdateFrame = leap_controller_.GetInterpolatedFrame(leapFrameTime);
+        leap_controller_.GetInterpolatedFrame(_untransformedUpdateFrame, leapFrameTime);
       } else {
         _untransformedUpdateFrame = leap_controller_.Frame();
       }
@@ -203,7 +205,7 @@ namespace Leap.Unity {
         Int64 unityOffsetTime = unityTime - _interpolationDelay * 1000;
         Int64 leapFrameTime = clockCorrelator.ExternalClockToLeapTime(unityOffsetTime);
 
-        _untransformedFixedFrame = leap_controller_.GetInterpolatedFrame(leapFrameTime);
+        leap_controller_.GetInterpolatedFrame(_untransformedFixedFrame, leapFrameTime);
       } else {
         _untransformedFixedFrame = leap_controller_.Frame();
       }
