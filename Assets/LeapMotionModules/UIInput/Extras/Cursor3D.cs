@@ -70,7 +70,7 @@ public class Cursor3D : MonoBehaviour {
     //Update the Head Yaw for Calculating "Shoulder Positions"
     void Update()
     {
-        Frame curFrame = LeapDataProvider.CurrentFrame.TransformedCopy(LeapTransform.Identity);
+        Frame curFrame = LeapDataProvider.CurrentFrame;
 
         Quaternion HeadYaw = Quaternion.Euler(0f, InputTracking.GetLocalRotation(VRNode.Head).eulerAngles.y, 0f);
         CurrentRotation = Quaternion.Slerp(CurrentRotation, HeadYaw, 0.1f);

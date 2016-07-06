@@ -7,7 +7,7 @@ namespace Leap.Unity.Tests {
 
     protected override Frame createFrame() {
       _originalFrame = TestHandFactory.MakeTestFrame(0, true, true);
-      return _originalFrame.TransformedCopy(LeapTransform.Identity);
+      return new Frame().CopyFrom(_originalFrame).Transform(LeapTransform.Identity);
     }
 
     [Test]
@@ -35,7 +35,7 @@ namespace Leap.Unity.Tests {
     protected override Frame createFrame() {
       _originalFrame = TestHandFactory.MakeTestFrame(0, true, true);
       LeapTransform forwardTransform = new LeapTransform(translation, LeapQuaternion.Identity);
-      return _originalFrame.TransformedCopy(forwardTransform);
+      return new Frame().CopyFrom(_originalFrame).Transform(forwardTransform);
     }
 
     [Test]
